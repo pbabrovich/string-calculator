@@ -1,5 +1,10 @@
 package kata;
 
+import kata.exception.NegativeNumberException;
+
+import java.util.ArrayList;
+import java.util.List;
+
 public class StringCalculator {
     public int add(String numbers) {
         int sum = 0;
@@ -16,9 +21,18 @@ public class StringCalculator {
             //Taking only numbers
             numbers = numbers.substring(3);
         }
+        List<String> negativeNumbers = new ArrayList<>();
         String[] numArray = numbers.trim().split(delimiter);
         for (String number : numArray) {
-            sum += Integer.parseInt(number);
+            if (Integer.parseInt(number) > 0) {
+                sum += Integer.parseInt(number);
+            } else {
+                negativeNumbers.add(number);
+            }
+        }
+        //Will throw an exception if there were negative numbers
+        if (!negativeNumbers.isEmpty()) {
+            NegativeNumberException.throwNegativeNumberException(String.join(",", negativeNumbers));
         }
         return sum;
     }

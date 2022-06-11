@@ -1,8 +1,10 @@
 package kata;
 
+import kata.exception.NegativeNumberException;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 
 class StringCalculatorTest {
     static StringCalculator stringCalc;
@@ -43,4 +45,15 @@ class StringCalculatorTest {
     void QuestionMarkAsACustomDelimiter() {
         assertEquals(17, stringCalc.add("//?\n1?3?3?10"));
     }
+    @Test
+    void negativeNumbersShouldReturnNegativeNumberException() {
+        assertThrows(NegativeNumberException.class, () ->
+            stringCalc.add("2,3,-1,5,-2"));
+    }
+    @Test
+    void negativeNumbersAndCustomDelimiterShouldReturnNegativeNumberException() {
+        assertThrows(NegativeNumberException.class, () ->
+            stringCalc.add("//%\n2%3%-1%5%-2"));
+    }
+
 }
