@@ -8,12 +8,8 @@ public class StringCalculator {
             return sum;
         }
         String[] numArray = numbers.trim().split(",");
-        for (int i = 0; i < numArray.length; i++) {
-            //Up to two numbers
-            if (i == 2) {
-                break;
-            }
-            sum += Integer.parseInt(numArray[i]);
+        for (String numberString : numArray) {
+            sum += Integer.parseInt(numberString);
         }
         return sum;
     }
