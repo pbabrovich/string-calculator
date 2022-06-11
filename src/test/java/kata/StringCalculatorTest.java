@@ -55,5 +55,13 @@ class StringCalculatorTest {
         assertThrows(NegativeNumberException.class, () ->
             stringCalc.add("//%\n2%3%-1%5%-2"));
     }
+    @Test
+    void numbersBiggerThanOneThousandShouldBeIgnored() {
+        assertEquals(67, stringCalc.add("//?\n50?3?3?1090?3?2?3?3?4552"));
+    }
+    @Test
+    void numbersBiggerThanOneThousandShouldBeIgnoredWithDefaultDelimiter() {
+        assertEquals(1002, stringCalc.add("9802,999,1,1001,2"));
+    }
 
 }

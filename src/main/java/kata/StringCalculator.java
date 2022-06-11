@@ -24,10 +24,13 @@ public class StringCalculator {
         List<String> negativeNumbers = new ArrayList<>();
         String[] numArray = numbers.trim().split(delimiter);
         for (String number : numArray) {
-            if (Integer.parseInt(number) > 0) {
-                sum += Integer.parseInt(number);
-            } else {
+            //Step 6
+            if (Integer.parseInt(number) < 0) {
                 negativeNumbers.add(number);
+                continue;
+            }
+            if (Integer.parseInt(number) < 1000) {
+                sum += Integer.parseInt(number);
             }
         }
         //Will throw an exception if there were negative numbers
