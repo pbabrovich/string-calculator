@@ -7,8 +7,16 @@ public class StringCalculator {
         if ("".equals(numbers.trim())) {
             return sum;
         }
-        // Splitting by "," OR "\n"
-        String[] numArray = numbers.split("[,|\n]");
+        // Default delimiter
+        String delimiter = "[,|\n]";
+        //Changing to custom delimiter if there is "//" at the beginning of the string.
+        if (numbers.startsWith("//")) {
+            //Custom delimiter
+            delimiter = "[" + numbers.charAt(2) + "]";
+            //Taking only numbers
+            numbers = numbers.substring(3);
+        }
+        String[] numArray = numbers.trim().split(delimiter);
         for (String number : numArray) {
             sum += Integer.parseInt(number);
         }

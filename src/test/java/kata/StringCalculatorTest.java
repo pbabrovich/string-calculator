@@ -31,4 +31,16 @@ class StringCalculatorTest {
     void testingNewLineAsADelimiter() {
         assertEquals(19, stringCalc.add("5\n5,2,2\n5"));
     }
+    @Test
+    void hyphenAsACustomDelimiter() {
+        assertEquals(14, stringCalc.add("//-\n5-5-2-2"));
+    }
+    @Test
+    void hashAsACustomDelimiter() {
+        assertEquals(17, stringCalc.add("//#\n1#3#3#10"));
+    }
+    @Test
+    void QuestionMarkAsACustomDelimiter() {
+        assertEquals(17, stringCalc.add("//?\n1?3?3?10"));
+    }
 }
