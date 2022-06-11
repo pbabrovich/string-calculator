@@ -7,9 +7,10 @@ public class StringCalculator {
         if ("".equals(numbers.trim())) {
             return sum;
         }
-        String[] numArray = numbers.trim().split(",");
-        for (String numberString : numArray) {
-            sum += Integer.parseInt(numberString);
+        // Splitting by "," OR "\n"
+        String[] numArray = numbers.split("[,|\n]");
+        for (String number : numArray) {
+            sum += Integer.parseInt(number);
         }
         return sum;
     }

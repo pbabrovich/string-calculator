@@ -27,4 +27,8 @@ class StringCalculatorTest {
     void fivePLusFivePlusTwoPlusTwoShouldEqualsFourteen() {
         assertEquals(14, stringCalc.add("5,5,2,2"));
     }
+    @Test
+    void testingNewLineAsADelimiter() {
+        assertEquals(19, stringCalc.add("5\n5,2,2\n5"));
+    }
 }
