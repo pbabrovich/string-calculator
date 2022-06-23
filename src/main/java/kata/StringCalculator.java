@@ -1,9 +1,9 @@
 package kata;
 
 import kata.exception.NegativeNumberException;
-
-import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class StringCalculator {
     public int add(String numbers) {
@@ -21,22 +21,14 @@ public class StringCalculator {
             //Taking only numbers
             numbers = numbers.substring(3);
         }
-        List<String> negativeNumbers = new ArrayList<>();
         String[] numArray = numbers.trim().split(delimiter);
-        for (String number : numArray) {
-            //Step 6
-            if (Integer.parseInt(number) < 0) {
-                negativeNumbers.add(number);
-                continue;
-            }
-            if (Integer.parseInt(number) < 1000) {
-                sum += Integer.parseInt(number);
-            }
-        }
+        List<String> negativeNumbers = Arrays.stream(numArray)
+                .filter(e -> Integer.parseInt(e) < 0).collect(Collectors.toList());
         //Will throw an exception if there were negative numbers
         if (!negativeNumbers.isEmpty()) {
             NegativeNumberException.throwNegativeNumberException(String.join(",", negativeNumbers));
         }
-        return sum;
+        return Arrays.stream(numArray).filter(e -> Integer.parseInt(e) > 0 && Integer.parseInt(e) < 1000)
+                .mapToInt(Integer::parseInt).sum();
     }
 }
