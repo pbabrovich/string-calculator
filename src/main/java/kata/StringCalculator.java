@@ -1,16 +1,16 @@
 package kata;
 
 import kata.exception.NegativeNumberException;
+
 import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
 
 public class StringCalculator {
     public int add(String numbers) {
-        int sum = 0;
         // Handle an empty string
         if ("".equals(numbers.trim())) {
-            return sum;
+            return 0;
         }
         // Default delimiter
         String delimiter = "[,|\n]";
